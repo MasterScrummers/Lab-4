@@ -55,7 +55,7 @@ public class AudioController : MonoBehaviour
     /// <param name="clipName">The name of the music file.</param>
     public void PlayMusic(string clipName)
     {
-        if ((!musicPlayer.clip || !musicPlayer.clip.name.Equals(clipName)) && musicPlayer.isPlaying)
+        if (!musicPlayer.clip || !musicPlayer.clip.name.Equals(clipName) || !musicPlayer.isPlaying)
         {
             PlayAudio(musicPlayer, clipName);
         }
