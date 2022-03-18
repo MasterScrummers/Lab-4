@@ -10,10 +10,14 @@ public class MainMenuController : MonoBehaviour
 
     bool startingGame;
 
+    SceneController sceneController;
+
     // Start is called before the first frame update
     void Start()
     {
         startingGame = false;
+
+        sceneController = DoStatic.GetGameController().GetComponent<SceneController>();
 
         // Identify menu parts
         canvasChildren = DoStatic.GetChildren(transform);
@@ -34,6 +38,13 @@ public class MainMenuController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            startingGame = true;
+            StopCoroutine("FlashStartText");
+                
+            sceneController.ChangeScene("MainGame");
+        }
 
     }
 
