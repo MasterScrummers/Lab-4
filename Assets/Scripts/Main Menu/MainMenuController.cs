@@ -5,65 +5,134 @@ using UnityEngine.UI;
 
 public class MainMenuController : MonoBehaviour
 {
-    Transform[] canvasChildren;
+    GameObject startScreen;
+    CanvasGroup startCG;
     Text startText;
+    
+    GameObject instructionsScreen;
+    CanvasGroup instructionsCG;
+    Text continueText;
+    
+    bool readyForInput;
+    bool readyToStart;
 
-    bool startingGame;
+    const float fadeTime = 1.0f;
 
     SceneController sceneController;
 
     // Start is called before the first frame update
     void Start()
     {
-        startingGame = false;
+        readyToStart = false;
 
         sceneController = DoStatic.GetGameController().GetComponent<SceneController>();
 
         // Identify menu parts
-        canvasChildren = DoStatic.GetChildren(transform);
-        foreach (Transform child in canvasChildren) 
+        foreach (Transform child in DoStatic.GetChildren(transform)) 
+        {
+            if (child.gameObject.name == "Start Screen")
+            {
+                startScreen = child.gameObject;
+                startCG = startScreen.GetComponent<CanvasGroup>();
+            } else if (child.gameObject.name == "Instructions Screen")
+            {
+                instructionsScreen = child.gameObject;
+                instructionsCG = instructionsScreen.GetComponent<CanvasGroup>();
+            }
+        }
+
+        foreach (Transform child in DoStatic.GetChildren(startScreen.transform))
         {
             if (child.gameObject.name == "Start Text")
             {
                 startText = child.gameObject.GetComponent<Text>();
-                
-                //remove break if looking for more objects
                 break;
-            }
+            } 
         }
 
-        StartCoroutine("FlashStartText");
+        foreach (Transform child in DoStatic.GetChildren(instructionsScreen.transform))
+        {
+            if (child.gameObject.name == "Continue Text")
+            {
+                continueText = child.gameObject.GetComponent<Text>();
+                break;
+            } 
+        }
+
+        readyForInput = true;
+        StartCoroutine("FlashText", startText);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (readyForInput)
         {
-            startingGame = true;
-            StopCoroutine("FlashStartText");
-                
-            sceneController.ChangeScene("MainGame");
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                StopCoroutine("FlashText");
+                if (readyToStart)
+                {
+                    sceneController.ChangeScene("MainGame");
+                } else {
+                    StartCoroutine("FadeStartToInstructions");
+                }
+            }
         }
-
     }
 
-    IEnumerator FlashStartText()
+    IEnumerator FlashText(Text textToFlash)
     {
-        while (!startingGame)
+        while (true)
         {
             yield return new WaitForSeconds(3);
 
-            startText.enabled = false;
+            textToFlash.enabled = false;
             yield return new WaitForSeconds(0.15f);          
-            startText.enabled = true;
+            textToFlash.enabled = true;
 
             yield return new WaitForSeconds(0.5f);
 
-            startText.enabled = false;
+            textToFlash.enabled = false;
             yield return new WaitForSeconds(0.15f);
-            startText.enabled = true;
+            textToFlash.enabled = true;
         }
+    }
+
+    IEnumerator FadeStartToInstructions()
+    {
+        readyForInput = false;
+        startCG.blocksRaycasts = false;
+        float startTimer = 0;
+
+        while (startTimer < fadeTime)
+        {
+            startTimer += Time.deltaTime;
+            startCG.alpha = 1 - Mathf.Lerp(0, 1, startTimer/fadeTime);
+            yield return null;
+        }
+
+        float instructionsTimer = 0;
+
+        yield return new WaitForSeconds(0.2f);
+
+        while (instructionsTimer < fadeTime)
+        {
+            instructionsTimer += Time.deltaTime;
+            instructionsCG.alpha = Mathf.Lerp(0, 1, instructionsTimer/fadeTime);
+            yield return null;
+        }
+
+        instructionsCG.blocksRaycasts = true;
+
+        yield return new WaitForSeconds(3.0f);
+
+        continueText.enabled = true;
+        readyForInput = true;
+        readyToStart = true;
+
+        StartCoroutine("FlashText", continueText);
+
         yield break;
     }
 }
