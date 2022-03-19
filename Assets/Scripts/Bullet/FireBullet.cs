@@ -18,13 +18,11 @@ public class FireBullet : MonoBehaviour
     void Update()
     {
         
+        //Probably could put all this in its own fire fucntion... will see how Ryan has handled fire rate
         if (input.shoot == true)
         {
-            //Debug.Log("bullet");
-            //Instantiate(bullet, transform.position, transform.rotation, transform);
-            GameObject new_bullet = Instantiate(bullet, transform.position, Quaternion.identity);
-            //rotate the bullet as the gameobject
-            new_bullet.transform.up = transform.up.normalized;
+            GameObject new_bullet = Instantiate(bullet, transform.position, Quaternion.identity); //Make a new bullet
+            new_bullet.transform.up = transform.up.normalized; //match y-axis of bullet to that of the player
         }
     }
 }
