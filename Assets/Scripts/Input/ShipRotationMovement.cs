@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PivotRotationMovement : MonoBehaviour
+public class ShipRotationMovement : MonoBehaviour
 {
     private InputController input;
     public float rotationSpeed = 1;

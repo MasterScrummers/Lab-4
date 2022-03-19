@@ -12,7 +12,7 @@ public class PivotCreator : MonoBehaviour
         pivot.transform.position = pivotPosition;
         if (addRotationMovement)
         {
-            pivot.AddComponent<PivotRotationMovement>();
+            pivot.AddComponent<ShipRotationMovement>();
         }
         transform.parent = pivot.transform;
     }
