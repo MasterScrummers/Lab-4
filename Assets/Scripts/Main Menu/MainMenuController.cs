@@ -124,12 +124,12 @@ public class MainMenuController : MonoBehaviour
         }
 
         instructionsCG.blocksRaycasts = true;
+        readyForInput = true;
+        readyToStart = true;
 
         yield return new WaitForSeconds(3.0f);
 
         continueText.enabled = true;
-        readyForInput = true;
-        readyToStart = true;
 
         StartCoroutine("FlashText", continueText);
 
