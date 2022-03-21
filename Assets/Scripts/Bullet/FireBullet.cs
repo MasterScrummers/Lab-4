@@ -6,7 +6,12 @@ public class FireBullet : MonoBehaviour
 {
 
     private InputController input;
+    private bool canShoot = true;
+    private Vector3 bulletVariance = new Vector3(0.2f, 0f, 0f);
+    public bool upgradeShot = true;
     public GameObject bullet;
+    public GameObject upgradedBullet;
+
 
     // Start is called before the first frame update
     void Start()
@@ -19,10 +24,31 @@ public class FireBullet : MonoBehaviour
     {
         
         //Probably could put all this in its own fire fucntion... will see how Ryan has handled fire rate
-        if (input.shoot == true)
+        if (input.shoot && canShoot)
         {
-            GameObject new_bullet = Instantiate(bullet, transform.position, Quaternion.identity); //Make a new bullet
-            new_bullet.transform.up = transform.up.normalized; //match y-axis of bullet to that of the player
+            StartCoroutine(FireRate());
+            
         }
     }
+
+    IEnumerator FireRate()
+    {
+        canShoot = false;
+        /*if (upgradeShot)
+        {
+            GameObject newUpgradedBullet = Instantiate(upgradedBullet, transform.position, transform.rotation); //Make a new upgraded bullet
+           
+            upgradeShot = false;
+        }
+        else*/
+        {
+            GameObject newBullet = Instantiate(bullet, transform.position, transform.rotation); //Make a new bullet
+
+        }
+        yield return new WaitForSeconds(2.5f); //wait 2.5 seconds between shots
+        canShoot = true;
+    }
 }
+
+
+

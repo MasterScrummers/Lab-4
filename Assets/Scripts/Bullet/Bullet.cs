@@ -24,8 +24,13 @@ public class Bullet : MonoBehaviour
         transform.localScale = Vector3.Lerp(transform.localScale, targetScale, Time.deltaTime * speed); //Bullet getting smaller as it gets further away
 
         //This is just a dummy for now, will be removed once we figure out perspective
-        if (transform.position.y >= -0.2 && transform.position.y <= 0.2 && transform.position.x >= -0.2 && transform.position.x <= 0.2)
+        if (transform.localScale.x <= (targetScale.x+0.005))
         {
+            //Destory the upgraded bullet parent object
+            /*if (transform.parent != null)
+            {
+                Destroy(transform.parent.gameObject);
+            }*/
             Destroy(gameObject); //Destroy bullet at center of screen
         }
     }
