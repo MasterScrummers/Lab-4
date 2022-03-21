@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class SpecialBullet : MonoBehaviour
 {
-    public float speed = 2; //bullet speed
+    public float speed = 4; //bullet speed
+    public float destroyTime; //Time take for the bullet to destroy itself
     private Rigidbody2D rb;
 
     // Start is called before the first frame update
@@ -17,12 +18,8 @@ public class Bullet : MonoBehaviour
     void Update()
     {
         rb.velocity = transform.up * speed; //bullet being fired along y-axis of player
-
-        //This is just a dummy for now, will be removed once we figure out perspective
-        if (transform.position.y >= -0.2 && transform.position.y <= 0.2 && transform.position.x >= -0.2 && transform.position.x <= 0.2)
-        {
-            Destroy(gameObject); //Destroy bullet at center of screen
-        }
+        StartCoroutine(DestroySelf());
+        
     }
 
     //Bullet Collision with Enemy
@@ -33,7 +30,12 @@ public class Bullet : MonoBehaviour
         {
             DoStatic.GetGameController().GetComponent<VariableController>().ChangeScore(100);
             Destroy(collision.gameObject); //Might need to change it if we want a explode animation when enemy get destroyed.
-            Destroy(gameObject);
         }
+    }
+
+    private IEnumerator DestroySelf()
+    {
+        yield return new WaitForSeconds(destroyTime);
+        Destroy(gameObject);
     }
 }
