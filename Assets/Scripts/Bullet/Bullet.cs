@@ -23,15 +23,14 @@ public class Bullet : MonoBehaviour
         rb.velocity = transform.up * speed; //bullet being fired along y-axis of player
         transform.localScale = Vector3.Lerp(transform.localScale, targetScale, Time.deltaTime * speed); //Bullet getting smaller as it gets further away
 
-        //This is just a dummy for now, will be removed once we figure out perspective
         if (transform.localScale.x <= (targetScale.x+0.005))
         {
             //Destory the upgraded bullet parent object
-            /*if (transform.parent != null)
+            if (transform.parent != null)
             {
                 Destroy(transform.parent.gameObject);
-            }*/
-            Destroy(gameObject); //Destroy bullet at center of screen
+            }
+            Destroy(gameObject); //Destroy bullet itself
         }
     }
 }

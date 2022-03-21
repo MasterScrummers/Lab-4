@@ -6,9 +6,8 @@ public class FireBullet : MonoBehaviour
 {
 
     private InputController input;
+    private VariableController var;
     private bool canShoot = true;
-    private Vector3 bulletVariance = new Vector3(0.2f, 0f, 0f);
-    public bool upgradeShot = true;
     public GameObject bullet;
     public GameObject upgradedBullet;
 
@@ -17,6 +16,7 @@ public class FireBullet : MonoBehaviour
     void Start()
     {
         input = DoStatic.GetGameController().GetComponent<InputController>();
+        var = DoStatic.GetGameController().GetComponent<VariableController>();
     }
 
     // Update is called once per frame
@@ -34,13 +34,12 @@ public class FireBullet : MonoBehaviour
     IEnumerator FireRate()
     {
         canShoot = false;
-        /*if (upgradeShot)
+        if (var.blasts > 0) //If player has an upgraded bullet
         {
             GameObject newUpgradedBullet = Instantiate(upgradedBullet, transform.position, transform.rotation); //Make a new upgraded bullet
-           
-            upgradeShot = false;
+            var.blasts--;
         }
-        else*/
+        else //Regular shot
         {
             GameObject newBullet = Instantiate(bullet, transform.position, transform.rotation); //Make a new bullet
 

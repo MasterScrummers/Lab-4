@@ -5,7 +5,7 @@ public class VariableController : MonoBehaviour
     public int highScore { get; private set; } = 0; //The high score
     public int score { get; private set; } = 0; //The game score
     public int lives { get; private set; } = 4; //The life number.
-    public int blasts { get; private set; } = 1; //The number of blasts remaining?
+    public int blasts { get; set; } = 1; //The number of blasts remaining?
 
     private SaveController save; //A reference of the save file. Used for the high score.
 
