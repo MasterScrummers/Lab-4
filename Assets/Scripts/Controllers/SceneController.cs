@@ -11,24 +11,22 @@ public class SceneController : MonoBehaviour
     private TransitionBase currentTransition; //The current transition that is happening.
     private bool isTransitioning; //A check to know when the scene is transitioning.
 
+    private void Awake()
+    {
+        transitionTimes = new Dictionary<string, float[]>();
+        transitionTimes.Add("Fade", new float[] { 1, 1 });//[0] is timeIn, [1] is timeOut
+    }
+
     void Start()
     {
         currentScene = DoStatic.GetSceneName();
         audioController = GetComponent<AudioController>();
         
         DoSceneStartUp();
-
-        transitionTimes = new Dictionary<string, float[]>();
-        transitionTimes.Add("Fade", new float[] { 1, 1 });//[0] is timeIn, [1] is timeOut
     }
 
     private void DoSceneStartUp()
     {
-        switch(currentScene)
-        {
-            case "MainGame":
-                return;
-        }
     }
 
     /// <summary>

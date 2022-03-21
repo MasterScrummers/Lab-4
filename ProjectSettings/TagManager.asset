@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Transition
   - Enemy
+  - StartUp
   layers:
   - Default
   - TransparentFX

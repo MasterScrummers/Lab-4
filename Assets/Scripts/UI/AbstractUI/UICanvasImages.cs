@@ -4,21 +4,17 @@ using UnityEngine.UI;
 
 public class UICanvasImages : MonoBehaviour
 {
-    protected List<Image> images;
+    protected List<Transform> images;
     protected VariableController varController;
     protected int prevValue;
 
     protected virtual void Start()
     {
-        images = new List<Image>();
+        images = new List<Transform>();
         varController = DoStatic.GetGameController().GetComponent<VariableController>();
         foreach (Transform child in DoStatic.GetChildren(transform))
         {
-            Image image = child.GetComponent<Image>();
-            if (image != null)
-            {
-                images.Add(image);
-            }
+            images.Add(child);
         }
     }
 
@@ -31,9 +27,9 @@ public class UICanvasImages : MonoBehaviour
 
         prevValue = newValue;
         int value = 0;
-        foreach (Image image in images)
+        foreach (Transform image in images)
         {
-            image.enabled = value++ < newValue;
+            image.gameObject.SetActive(value++ < newValue);
         }
     }
 }

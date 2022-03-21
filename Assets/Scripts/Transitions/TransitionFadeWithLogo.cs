@@ -1,9 +1,16 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// 1. TransitionIn (parent, override)
+/// 2. WaitingIn
+///     2.1 LoadingIn
+///     2.2 LoadingOut
+/// 5. TransitionOut (parent)
+/// </summary>
 public class TransitionFadeWithLogo : TransitionFade
 {
-    private Image logo;
+    private Image logo; //The logo to rotate.
 
     protected override void Start()
     {
@@ -16,15 +23,14 @@ public class TransitionFadeWithLogo : TransitionFade
                 break;
             }
         }
-
         base.Start();
     }
 
     protected override void TransitionIn(bool isStartUp)
     {
         base.TransitionIn(isStartUp);
-        if (!lerp.isLerping)
-        {
+
+        if (GetType().Equals(typeof(TransitionFadeWithLogo)) && !lerp.isLerping) {
             AssignState(WaitingIn);
         }
     }
@@ -33,6 +39,7 @@ public class TransitionFadeWithLogo : TransitionFade
     {
         if (isStartUp)
         {
+            startLoading = true;
             lerp.SetValues(0, 1, 0.1f);
             return;
         }
@@ -58,7 +65,7 @@ public class TransitionFadeWithLogo : TransitionFade
             return;
         }
 
-        UpdateAlpha(logo);
+        logo.color = UpdateAlpha(logo.color);
 
         if (!lerp.isLerping && startFinishingUp)
         {
@@ -74,7 +81,7 @@ public class TransitionFadeWithLogo : TransitionFade
             return;
         }
 
-        UpdateAlpha(logo);
+        logo.color = UpdateAlpha(logo.color);
 
         if (!lerp.isLerping)
         {
