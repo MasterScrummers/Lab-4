@@ -33,6 +33,11 @@ public class DoStatic
         LoadScene(SceneManager.GetSceneByBuildIndex(index).name);
     }
 
+    public static void MoveGameObjectToScene(GameObject obj, Scene scene)
+    {
+        SceneManager.MoveGameObjectToScene(obj, scene);
+    }
+
     /// <summary>
     /// Unload a given scene (by string).
     /// </summary>
@@ -41,20 +46,6 @@ public class DoStatic
     public static AsyncOperation UnloadScene(string sceneName)
     {
         return SceneManager.UnloadSceneAsync(sceneName);
-    }
-
-    /// <summary>
-    /// Converts the 0-255 rgb values to a float between 0 - 1.
-    /// This is needed for the Color.
-    /// </summary>
-    /// <param name="r">Red</param>
-    /// <param name="g">Green</param>
-    /// <param name="b">Blue</param>
-    /// <param name="a">Alpha, defaults to 1</param>
-    /// <returns>Returns the correct colour.</returns>
-    public static Color RGBConverter(int r, int g, int b, int a = 255)
-    {
-        return new Color(r / 255f, g / 255f, b / 255f, a / 255f);
     }
 
     /// <summary>

@@ -1,10 +1,15 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// 1. TransitionIn
+/// 2. TransitionOut
+/// </summary>
+[RequireComponent(typeof(Image))]
 public class TransitionFade : TransitionBase
 {
-    protected Lerper lerp;
-    private Image background;
+    protected Lerper lerp; //The lerper, not much to say here.
+    private Image background; //The background that is transitioned into.
 
     protected override void Start()
     {
@@ -27,19 +32,19 @@ public class TransitionFade : TransitionBase
             return;
         }
 
-        UpdateAlpha(background);
+        background.color = UpdateAlpha(background.color);
 
-        if (!lerp.isLerping)
+        if (GetType().Equals(typeof(TransitionFade)) && !lerp.isLerping)
         {
             startLoading = true;
-            if (startFinishingUp && this.GetType().Equals(typeof(TransitionFade)))
+            if (startFinishingUp)
             {
                 AssignState(TransitionOut);
             }
         }
     }
 
-    protected virtual void TransitionOut(bool isStartUp)
+    protected void TransitionOut(bool isStartUp)
     {
         if (isStartUp)
         {
@@ -47,7 +52,7 @@ public class TransitionFade : TransitionBase
             return;
         }
 
-        UpdateAlpha(background);
+        background.color = UpdateAlpha(background.color);
 
         if (!lerp.isLerping)
         {
@@ -55,12 +60,9 @@ public class TransitionFade : TransitionBase
         }
     }
 
-    protected void UpdateAlpha(Image image)
+    protected Color UpdateAlpha(Color currentColour)
     {
         lerp.Update(Time.deltaTime);
-        if (image)
-        {
-            image.color = new Color(image.color.r, image.color.g, image.color.b, lerp.currentValue);
-        }
+        return new Color(currentColour.r, currentColour.g, currentColour.b, lerp.currentValue);
     }
 }

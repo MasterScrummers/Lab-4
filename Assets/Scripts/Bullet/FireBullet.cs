@@ -9,20 +9,21 @@ public class FireBullet : MonoBehaviour
     private VariableController var;
     private bool canShoot = true;
     public GameObject bullet;
-    public GameObject upgradedBullet;
-
+    public GameObject specialBullet;
+    public Transform firePosition;
+    private VariableController vc;
 
     // Start is called before the first frame update
     void Start()
     {
         input = DoStatic.GetGameController().GetComponent<InputController>();
-        var = DoStatic.GetGameController().GetComponent<VariableController>();
+        vc = DoStatic.GetGameController().GetComponent<VariableController>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
         //Probably could put all this in its own fire fucntion... will see how Ryan has handled fire rate
         if (input.shoot && canShoot)
         {
@@ -36,16 +37,20 @@ public class FireBullet : MonoBehaviour
         canShoot = false;
         if (var.blasts > 0) //If player has an upgraded bullet
         {
-            GameObject newUpgradedBullet = Instantiate(upgradedBullet, transform.position, transform.rotation); //Make a new upgraded bullet
-            var.blasts--;
+            GameObject new_bullet = Instantiate(bullet, firePosition.position, Quaternion.identity); //Make a new bullet
+            new_bullet.transform.up = transform.up.normalized; //match y-axis of bullet to that of the player
         }
-        else //Regular shot
-        {
-            GameObject newBullet = Instantiate(bullet, transform.position, transform.rotation); //Make a new bullet
 
+        //Press E to shoot a special Bullet
+        if (input.specialShoot == true)
+        {
+            if (vc.blasts > 0)
+            {
+                GameObject new_SpecialBullet = Instantiate(specialBullet, firePosition.position, Quaternion.identity);
+                new_SpecialBullet.transform.up = transform.up.normalized;
+                vc.ChangeBlast(-1);
+            }
         }
-        yield return new WaitForSeconds(2.5f); //wait 2.5 seconds between shots
-        canShoot = true;
     }
 }
 

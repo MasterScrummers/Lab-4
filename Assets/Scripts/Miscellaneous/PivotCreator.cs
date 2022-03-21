@@ -9,6 +9,7 @@ public class PivotCreator : MonoBehaviour
     void Start()
     {
         GameObject pivot = new GameObject(pivotName);
+        DoStatic.MoveGameObjectToScene(pivot, gameObject.scene);
         pivot.transform.position = pivotPosition;
         if (addRotationMovement)
         {

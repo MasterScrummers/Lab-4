@@ -15,11 +15,11 @@ public abstract class UICounter : MonoBehaviour
         varController = GameObject.FindGameObjectWithTag("GameController").GetComponent<VariableController>();
     }
 
-    protected void UpdateUI(object newValue)
+    protected void UpdateUI(object newValue, string customText = "")
     {
         if (prevValue != newValue)
         {
-            UIText.text = counterName + "\n" + newValue;
+            UIText.text = customText.Equals("") ? counterName + "\n" + newValue : customText;
             prevValue = newValue;
         }
     }

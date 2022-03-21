@@ -33,4 +33,16 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject); //Destroy bullet itself
         }
     }
+
+    //Bullet Collision with Enemy
+    //Destory itself and increase score
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Enemy")
+        {
+            DoStatic.GetGameController().GetComponent<VariableController>().ChangeScore(100);
+            Destroy(collision.gameObject); //Might need to change it if we want a explode animation when enemy get destroyed.
+            Destroy(gameObject);
+        }
+    }
 }
