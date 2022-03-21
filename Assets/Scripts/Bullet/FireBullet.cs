@@ -21,7 +21,7 @@ public class FireBullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
         //Probably could put all this in its own fire fucntion... will see how Ryan has handled fire rate
         if (input.shoot == true)
         {
@@ -30,12 +30,14 @@ public class FireBullet : MonoBehaviour
         }
 
         //Press E to shoot a special Bullet
-        if (input.specialShoot  == true)
+        if (input.specialShoot == true)
         {
-            Debug.Log("Special");
+            if (vc.blasts > 0)
+            {
                 GameObject new_SpecialBullet = Instantiate(specialBullet, firePosition.position, Quaternion.identity);
                 new_SpecialBullet.transform.up = transform.up.normalized;
                 vc.ChangeBlast(-1);
+            }
         }
     }
 }
