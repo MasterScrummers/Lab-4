@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class UIWarpsRemaining : UICounter
 {
-    protected StartUpMainGame game;
+    protected MainGameStartUp game;
 
     protected override void Start()
     {
         counterName = " warps to Neptune";
-        game = GameObject.FindGameObjectWithTag("StartUp").GetComponent<StartUpMainGame>();
+        game = GameObject.FindGameObjectWithTag("StartUp").GetComponent<MainGameStartUp>();
         base.Start();
     }
 

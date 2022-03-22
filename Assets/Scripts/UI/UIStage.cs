@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class UIStage : UICounter
 {
-    protected StartUpMainGame game;
+    protected MainGameStartUp game;
 
     protected override void Start()
     {
         counterName = "Stage ";
-        game = GameObject.FindGameObjectWithTag("StartUp").GetComponent<StartUpMainGame>();
+        game = GameObject.FindGameObjectWithTag("StartUp").GetComponent<MainGameStartUp>();
         base.Start();
     }
 

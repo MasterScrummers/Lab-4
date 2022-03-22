@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class StartUpMainGame : MonoBehaviour
+public class MainGameStartUp : MonoBehaviour
 {
     private AudioController audioPlayer;
     private VariableController variableController;

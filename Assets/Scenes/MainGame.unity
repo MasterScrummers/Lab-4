@@ -562,56 +562,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!1 &836099832
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 836099833}
-  - component: {fileID: 836099834}
-  m_Layer: 0
-  m_Name: EnemyController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &836099833
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 836099832}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &836099834
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 836099832}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbc89970d777d964fb935e9c28f5a4bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemies:
-  - {fileID: 1833847488369828065, guid: edf510a3acc4a7f4f87fe4b69c776f7d, type: 3}
-  - {fileID: 4435985729364607735, guid: a0fedfbd595c3864698882efd1e9bbf8, type: 3}
-  - {fileID: 7394436551372530595, guid: 2be8ed88a6815ca42b07ccbe6c55bdd8, type: 3}
-  - {fileID: 6509660250567695371, guid: ae793638961d5f14985e2861ad55717e, type: 3}
-  timeBetweenEnemies: 5
 --- !u!1 &971868723
 GameObject:
   m_ObjectHideFlags: 0
@@ -957,7 +907,7 @@ GameObject:
   - component: {fileID: 1141169368}
   - component: {fileID: 1141169369}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Ship
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1509,6 +1459,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1663274697}
   - component: {fileID: 1663274696}
+  - component: {fileID: 1663274698}
   m_Layer: 0
   m_Name: StartUp
   m_TagString: StartUp
@@ -1525,7 +1476,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1663274695}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad20a5974a38b784dbba8269523ef736, type: 3}
+  m_Script: {fileID: 11500000, guid: 05270a9cfb30caf42bb10b503160986c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   stage1Length: 60
@@ -1547,6 +1498,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1663274698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1663274695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbc89970d777d964fb935e9c28f5a4bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  typesOfEnemies:
+  - {fileID: 1833847488369828065, guid: edf510a3acc4a7f4f87fe4b69c776f7d, type: 3}
+  - {fileID: 8008164131039634389, guid: 08e8c89fe3ee5034b9cc1fd3fde9d8e9, type: 3}
+  - {fileID: 2747647556835329336, guid: 0b1c85b9c07ffd8498455bef28dde876, type: 3}
+  - {fileID: 7394436551372530595, guid: 2be8ed88a6815ca42b07ccbe6c55bdd8, type: 3}
+  - {fileID: 2133867290710562954, guid: 9ec95388b17ec9249ac69cc7a06cb0cc, type: 3}
+  spawningIntervals: 5
 --- !u!1 &1859134546
 GameObject:
   m_ObjectHideFlags: 0

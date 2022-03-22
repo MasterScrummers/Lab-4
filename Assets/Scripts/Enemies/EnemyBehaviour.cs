@@ -1,61 +1,59 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(SpriteRenderer))]
 public class EnemyBehaviour : MonoBehaviour
 {
-    public float timeBTW; //the time between each shot
-    public GameObject bullet; //bullet object
-    public Transform firePosition; //Where the bullet will spawn
-    private bool canShoot;  //detemine if the enemy can fire or not, based on the timeBTW variable
-    private bool playerSpotted; //If the raycast hit the player
-    private RaycastHit2D hit;
+    public int maxHealth { get; private set; } = 1; //The starting number of hits before it dies.
+    public int scoreWorth = 100; //The enemy's given score when destroyed.
+    public float speed = 20; //The speed of the enemy
+    
+    private int currentHealth; //The current health of the enemy
+    private VariableController variableController; //To add to the score.
+    private Vector3 originalScale; //The original scale.
+    private float lifetime;
 
-    // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
-        canShoot = true;
-        playerSpotted = false;
+        originalScale = transform.localScale;
+        variableController = DoStatic.GetGameController().GetComponent<VariableController>();
+        Reset();
     }
 
-    // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
-        if (playerSpotted)
+        float delta = Time.deltaTime;
+        transform.Translate(new Vector3(0, speed * delta, 0));
+        transform.localScale = originalScale * (lifetime += delta / 2);
+    }
+
+    /// <summary>
+    /// Should be called once when respawning.
+    /// </summary>
+    public virtual void Reset()
+    {
+        transform.position = Vector3.zero;
+        transform.eulerAngles = new Vector3(0, 0, Random.Range(0, 360f));
+        transform.localScale = Vector3.zero;
+        lifetime = 0;
+        currentHealth = maxHealth;
+    }
+
+    /// <summary>
+    /// When all cameras cannot see this gameobject, this procedure is called.
+    /// All cameras INCLUDING SCENE VIEW CAMERA. It's a pain, I know.
+    /// </summary>
+    private void OnBecameInvisible()
+    {
+        gameObject.SetActive(false);
+    }
+
+    private void ChangeHealth(int amount)
+    {
+        currentHealth += amount;
+        if (currentHealth <= 0)
         {
-            if (canShoot)
-            {
-                StartCoroutine(Shoot());
-            }
-        }
-    }
-
-    private IEnumerator Shoot()
-    {
-        canShoot = false;
-        GameObject new_bullet = Instantiate(bullet, firePosition.position, Quaternion.identity);
-        new_bullet.transform.up = transform.up.normalized;
-        yield return new WaitForSeconds(timeBTW);
-        canShoot = true;
-    }
-
-
-    void FixedUpdate()
-    {
-        //A raycast to check if the enemy spotted the player or not
-        hit = Physics2D.Raycast(firePosition.position, Vector2.up);
-
-        if (hit.collider != null)
-        {
-            //if it hits the player
-            if (hit.collider.tag == "Player")
-            {
-                playerSpotted = true;
-            }
-            else
-            {
-                playerSpotted = false;
-            }
+            variableController.ChangeScore(scoreWorth);
+            gameObject.SetActive(false);
         }
     }
 }

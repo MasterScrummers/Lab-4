@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2747647556835329339}
   - component: {fileID: 3406943687718875383}
   m_Layer: 0
-  m_Name: Satellite
+  m_Name: EnemySatellite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
