@@ -8,6 +8,7 @@ public class Bullet : MonoBehaviour
     private Rigidbody2D rb;
     private Vector3 targetScale;
 
+
     // Start is called before the first frame update
     void Start()
     {

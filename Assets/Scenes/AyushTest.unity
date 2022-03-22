@@ -1503,6 +1503,10 @@ PrefabInstance:
       value: Ship
       objectReference: {fileID: 0}
     - target: {fileID: 7649865021285939580, guid: 2b17d5c0eaa690d40bf37e2b225510d0, type: 3}
+      propertyPath: dualBullet
+      value: 
+      objectReference: {fileID: 31153210181078758, guid: 7df436fd6d5e59a429abd6666f1fcfc7, type: 3}
+    - target: {fileID: 7649865021285939580, guid: 2b17d5c0eaa690d40bf37e2b225510d0, type: 3}
       propertyPath: specialBullet
       value: 
       objectReference: {fileID: 2913622721249131458, guid: 2c1d620bf4cf7bc41a96b009f07a296d, type: 3}
