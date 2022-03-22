@@ -6,12 +6,11 @@ public class FireBullet : MonoBehaviour
 {
 
     private InputController input;
-    private VariableController var;
+    private VariableController vc;
     private bool canShoot = true;
     public GameObject bullet;
     public GameObject specialBullet;
     public Transform firePosition;
-    private VariableController vc;
 
     // Start is called before the first frame update
     void Start()
@@ -27,30 +26,38 @@ public class FireBullet : MonoBehaviour
         //Probably could put all this in its own fire fucntion... will see how Ryan has handled fire rate
         if (input.shoot && canShoot)
         {
-            StartCoroutine(FireRate());
-            
+            StartCoroutine(FireRate());    
         }
+
+        if (input.specialShoot && canShoot && vc.blasts>0)
+        {
+            StartCoroutine(SpecialFireRate());
+        }
+
+
     }
 
     IEnumerator FireRate()
     {
         canShoot = false;
-        if (var.blasts > 0) //If player has an upgraded bullet
-        {
-            GameObject new_bullet = Instantiate(bullet, firePosition.position, Quaternion.identity); //Make a new bullet
-            new_bullet.transform.up = transform.up.normalized; //match y-axis of bullet to that of the player
-        }
+        GameObject new_bullet = Instantiate(bullet, firePosition.position, Quaternion.identity); //Make a new bullet
+        new_bullet.transform.up = transform.up.normalized; //match y-axis of bullet to that of the player
 
-        //Press E to shoot a special Bullet
-        if (input.specialShoot == true)
-        {
-            if (vc.blasts > 0)
-            {
-                GameObject new_SpecialBullet = Instantiate(specialBullet, firePosition.position, Quaternion.identity);
-                new_SpecialBullet.transform.up = transform.up.normalized;
-                vc.ChangeBlast(-1);
-            }
-        }
+        yield return new WaitForSeconds(0.5f); //wait 2.5 seconds between shots
+        canShoot = true;
+    }
+
+
+    IEnumerator SpecialFireRate()
+    {
+        canShoot = false;
+        GameObject new_SpecialBullet = Instantiate(specialBullet, firePosition.position, Quaternion.identity);
+        new_SpecialBullet.transform.up = transform.up.normalized;
+        vc.ChangeBlast(-1);
+           
+        yield return new WaitForSeconds(0.5f); //wait 2.5 seconds between shots
+        canShoot = true;
+        Debug.Log(canShoot);
     }
 }
 

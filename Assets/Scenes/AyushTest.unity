@@ -381,6 +381,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad20a5974a38b784dbba8269523ef736, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stage1Length: 60
+  stage2Length: 120
+  stage3Length: 180
+  warpDisplayLength: 3
 --- !u!4 &253141391
 Transform:
   m_ObjectHideFlags: 0

@@ -6,14 +6,12 @@ public class Bullet : MonoBehaviour
 {
     public float speed = 1.5f; //bullet speed
     private Rigidbody2D rb;
-    private Vector3 originalScale;
     private Vector3 targetScale;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        originalScale = transform.localScale;
         targetScale = new Vector3(0.01f, 0.02f, 0.01f); //y-axis slightly bigger to mimic depth distoriton
     }
 
