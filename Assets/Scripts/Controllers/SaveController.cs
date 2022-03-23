@@ -110,6 +110,6 @@ public class SaveController : MonoBehaviour
     /// <returns>A float if the key exists otherwise returns 0.</returns>
     public float LoadNumberVariable(string key)
     {
-        return LoadVariable(key) != null ? (float)savedVars[key] : 0;
+        return (float)savedVars[key];
     }
 }

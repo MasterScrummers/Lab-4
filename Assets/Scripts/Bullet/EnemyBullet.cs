@@ -1,50 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBullet : MonoBehaviour
+public class EnemyBullet : EnemyBase
 {
-    public float speed = 2; //bullet speed
-    private Rigidbody2D rb;
-    public float destroyTime; //Time takes for the bullet to destroy itself
-    private VariableController vc;
-    // Start is called before the first frame update
-    void Start()
+    public float extraSpeed = 1;
+
+    /// <summary>
+    /// Sets the bullet to a particular position in a particular size
+    /// </summary>
+    /// <param name="pos">Controls the position of the bullet</param>
+    /// <param name="currentLifetime">Controls the size of the bullet</param>
+    public void SetPos(Transform form, float currentLifetime, float startSpeed, bool randomDirection)
     {
-        rb = GetComponent<Rigidbody2D>();
-        vc = DoStatic.GetGameController().GetComponent<VariableController>();
-        destroyTime = 3;
+        lifetime = currentLifetime;
+        transform.position = form.position;
+        transform.eulerAngles = randomDirection ? new Vector3(0, 0, Random.Range(0f, 360f)) : form.eulerAngles;
+        currentSpeed = startSpeed + extraSpeed;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        rb.velocity = transform.up * speed; //bullet being fired along y-axis of enemy
-        destroyTime -= Time.deltaTime;
-        if (destroyTime <= 0)
-        {
-            DestroySelf();
-        }
-    }
-
-    //Bullet Collision with the player (decrease life)
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.tag == "Player")
-        {
-            vc.DecrementLife();
-            Destroy(gameObject);
-
-            if (vc.lives <= 0)
-            {
-                Destroy(collision.gameObject);
-            }
-        }
-    }
-
-    //Bullet Destroy itsel
-    private void DestroySelf()
-    {
-        Destroy(gameObject);
+    public override void ResetValues() {
+        transform.localScale = Vector3.zero;
     }
 }

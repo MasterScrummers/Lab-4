@@ -4,11 +4,7 @@ using UnityEngine;
 
 public class DummyMenu : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public GameObject planet;
 
     // Update is called once per frame
     void Update()
@@ -22,7 +18,10 @@ public class DummyMenu : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.K))
         {
             SceneController scn = DoStatic.GetGameController().GetComponent<SceneController>();
-            scn.ChangeScene("MainMenu", "FadeWin");
+            InputController input = scn.GetComponent<InputController>();
+            input.ToggleInputLock();
+            Instantiate(planet);
+            
         }
     }
 }

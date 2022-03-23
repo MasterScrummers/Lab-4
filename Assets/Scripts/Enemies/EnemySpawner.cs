@@ -12,6 +12,7 @@ public class EnemySpawner : MonoBehaviour
 
     private float spawnTimer;
     public float bossCounter = 180.0f;
+    private bool bossSpawned = false;
 
     void Start()
     {
@@ -94,10 +95,10 @@ public class EnemySpawner : MonoBehaviour
                 }
             }
 
-            if (bossCounter <= 0)
+            if (bossCounter <= 0 && !bossSpawned)
             {
-                Debug.Log("Boss Spawned");
                 SpawnEnemy(5);
+                bossSpawned = true;
             }
         }
             
@@ -110,7 +111,7 @@ public class EnemySpawner : MonoBehaviour
             if (!enemy.activeInHierarchy)
             {
                 enemy.SetActive(true);
-                enemy.GetComponent<EnemyBehaviour>().Reset();
+                enemy.GetComponent<EnemyBehaviour>().ResetValues();
                 return;
             }
         }

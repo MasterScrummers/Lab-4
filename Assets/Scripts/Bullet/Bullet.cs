@@ -1,47 +1,65 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class Bullet : MonoBehaviour
 {
-    public float speed = 1.5f; //bullet speed
-    private Rigidbody2D rb;
-    private Vector3 targetScale;
+    public float lifetime = 3f;
+    private Lerper lerp;
 
+    [HideInInspector] public int strength; //The damage the bullet deals.
+
+    protected Vector3 originalScale; //The original scale.
+    protected Vector3 startRot; //The starting rotation.
+    protected Vector3 startPos; //The starting position of the bullet.
+
+    private float delta; //DeltaTime
 
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        targetScale = new Vector3(0.01f, 0.02f, 0.01f); //y-axis slightly bigger to mimic depth distoriton
+        originalScale = transform.localScale;
+        lerp = new Lerper();
+        ResetValues();
     }
 
     // Update is called once per frame
     void Update()
     {
-        rb.velocity = transform.up * speed; //bullet being fired along y-axis of player
-        transform.localScale = Vector3.Lerp(transform.localScale, targetScale, Time.deltaTime * speed); //Bullet getting smaller as it gets further away
-
-        if (transform.localScale.x <= (targetScale.x+0.005))
+        delta = Time.deltaTime;
+        lerp.Update(delta);
+        transform.position = Vector3.Lerp(startPos, Vector3.zero, lerp.currentValue);
+        transform.eulerAngles = startRot;
+        transform.localScale = Vector3.Lerp(originalScale, Vector3.zero, lerp.currentValue);
+        if (transform.localScale == Vector3.zero)
         {
-            //Destory the upgraded bullet parent object
-            if (transform.parent != null)
-            {
-                Destroy(transform.parent.gameObject);
-            }
-            Destroy(gameObject); //Destroy bullet itself
+            transform.localScale = Vector3.zero;
+            gameObject.SetActive(false);
         }
     }
 
-    //Bullet Collision with Enemy
-    //Destory itself and increase score
-    private void OnTriggerEnter2D(Collider2D collision)
+    /// <summary>
+    /// Resets all the appropriate values.
+    /// </summary>
+    public void ResetValues()
     {
-        if (collision.tag == "Enemy")
-        {
-            //collision.GetComponent<EnemyBehaviour>().health -= vc.bulletDamage;
-            //Debug.Log(collision.GetComponent<EnemyBehaviour>().health);
-            Destroy(gameObject);
-        }
+        transform.localPosition = Vector3.zero;
+        startRot = transform.parent.eulerAngles;
+        startPos = transform.position;
+        transform.localScale = originalScale;
+        lerp.SetValues(0, 1, lifetime);
+    }
+
+    /// <summary>
+    /// Updates certain values according to the parameter.
+    /// </summary>
+    /// <param name="strength">The power of the bullet.</param>
+    public void SetValues(int newStrength)
+    {
+        strength = newStrength;
+    }
+
+    public Transform GetShip()
+    {
+        return transform.parent;
     }
 }

@@ -8,6 +8,8 @@ TagManager:
   - Enemy
   - StartUp
   - EnemyBullets
+  - PlayerBullet
+  - SpecialBullet
   layers:
   - Default
   - TransparentFX

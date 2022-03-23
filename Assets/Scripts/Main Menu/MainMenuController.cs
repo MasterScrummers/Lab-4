@@ -30,7 +30,6 @@ public class MainMenuController : MonoBehaviour
         varController = DoStatic.GetGameController().GetComponent<VariableController>();
 
         // Reset values
-        varController.scoreCheck();
         varController.ResetScore();
         varController.ResetLife();
         varController.ResetBlast();

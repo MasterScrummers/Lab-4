@@ -101,9 +101,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7e42542c32a19d46bb1763944ae4ded, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 0.03
   scoreWorth: 100
-  speed: 1
-  rotationSpeed: 1
+  pivotRotationSpeed: 0
+  spriteRotationSpeed: 1
 --- !u!95 &3611833225374711051
 Animator:
   serializedVersion: 4
@@ -150,6 +151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pivotName: Pivot
+  pivotParentTagName: StartUp
   pivotPosition: {x: 0, y: 0, z: 0}
   addRotationMovement: 0
 --- !u!58 &7094093796479787184

@@ -132,9 +132,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: beeb66f0047a0fe44b633d4c4b36f9ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreWorth: 200
   speed: 0.01
-  rotationSpeed: 0.05
+  maxHealth: 2
+  scoreWorth: 200
+  pivotRotationSpeed: 0.03
+  EnemyBullet: {fileID: 6371004724320974646, guid: 2e1ff72b4287fed42ac69840987acfbc, type: 3}
+  shootingInterval: 2
 --- !u!95 &3903623918853063049
 Animator:
   serializedVersion: 4
@@ -194,5 +197,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pivotName: Pivot
+  pivotParentTagName: StartUp
   pivotPosition: {x: 0, y: 0, z: 0}
   addRotationMovement: 0

@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 2746196862003038081}
   - component: {fileID: 8589093314102577504}
   - component: {fileID: -6889018384343917015}
+  - component: {fileID: -4125066349655975000}
+  - component: {fileID: 6036740441596011803}
   m_Layer: 0
   m_Name: EnemyBoss
   m_TagString: Untagged
@@ -27,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1696339867918803751}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.982, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -116,7 +118,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.029769361}
@@ -132,3 +134,38 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5742978, y: 0.7337912}
   m_EdgeRadius: 0
+--- !u!114 &-4125066349655975000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1696339867918803751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f70a813e8b256aa48a83bd4876bff60b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pivotName: Pivot
+  pivotParentTagName: StartUp
+  pivotPosition: {x: 0, y: 0, z: 0}
+  addRotationMovement: 0
+--- !u!114 &6036740441596011803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1696339867918803751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e379f5431510ba640836314473364334, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
+  maxHealth: 33
+  scoreWorth: 1000
+  pivotRotationSpeed: 0
+  EnemyBullet: {fileID: 6371004724320974646, guid: 2e1ff72b4287fed42ac69840987acfbc, type: 3}
+  shootingInterval: 0.51
+  planet: {fileID: 6456061345060903966, guid: a6d6d8c62c7b9754886aae99c2994b33, type: 3}

@@ -17,7 +17,7 @@ public class VariableController : MonoBehaviour
     {
         save = GetComponent<SaveController>();
         save.Load();
-        highScore = (int)save.LoadNumberVariable("High Score");
+        highScore = (int)save.LoadVariable("High Score");
     }
 
     /// <summary>
@@ -29,6 +29,7 @@ public class VariableController : MonoBehaviour
     {
         if (score > highScore)
         {
+            highScore = score;
             save.SaveVariable("High Score", highScore);
             save.Save();
         }
@@ -41,6 +42,7 @@ public class VariableController : MonoBehaviour
     public void ChangeScore(int amount)
     {
         score += amount;
+        scoreCheck();
     }
 
     /// <summary>

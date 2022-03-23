@@ -123,64 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &12760511
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 12760516}
-  - component: {fileID: 12760512}
-  - component: {fileID: 12760515}
-  m_Layer: 0
-  m_Name: DUMMY MENU TO DELETE
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &12760512
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 12760511}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67e256268eea90249ac07b9bcc7cac8d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!222 &12760515
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 12760511}
-  m_CullTransparentMesh: 1
---- !u!224 &12760516
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 12760511}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 69023.43}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 508.89813, y: 598.3902}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &26168370
 GameObject:
   m_ObjectHideFlags: 0
@@ -1006,6 +948,9 @@ GameObject:
   - component: {fileID: 1141169367}
   - component: {fileID: 1141169368}
   - component: {fileID: 1141169369}
+  - component: {fileID: 1141169371}
+  - component: {fileID: 1141169370}
+  - component: {fileID: 1141169372}
   m_Layer: 0
   m_Name: Ship
   m_TagString: Player
@@ -1093,6 +1038,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pivotName: Ship Pivot
+  pivotParentTagName: StartUp
   pivotPosition: {x: 0, y: 0, z: 0}
   addRotationMovement: 1
 --- !u!95 &1141169368
@@ -1131,6 +1077,56 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0.12}
   serializedVersion: 2
   m_Radius: 0.15
+--- !u!114 &1141169370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1141169364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 409d4025ef7bafd479f30b24b8dd8d95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  iFrames: 2
+--- !u!114 &1141169371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1141169364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d11b0d602f741f54a9c9cb5cb7ad8221, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireRate: 0.5
+  bullets:
+  - {fileID: 650446931986396162, guid: 065e2103095658d4aa5e3993d8b47ffd, type: 3}
+  - {fileID: 2457720978337040323, guid: d204ac311842ff44c8a7eeec067b2fe6, type: 3}
+--- !u!50 &1141169372
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1141169364}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1186956578
 GameObject:
   m_ObjectHideFlags: 0
@@ -1651,7 +1647,7 @@ GameObject:
   - component: {fileID: 1768187383}
   m_Layer: 0
   m_Name: EnemyBullets
-  m_TagString: Untagged
+  m_TagString: EnemyBullets
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
