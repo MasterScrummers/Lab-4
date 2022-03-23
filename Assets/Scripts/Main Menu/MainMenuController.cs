@@ -19,6 +19,7 @@ public class MainMenuController : MonoBehaviour
     const float fadeTime = 1.0f;
 
     SceneController sceneController;
+    VariableController varController;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +27,13 @@ public class MainMenuController : MonoBehaviour
         readyToStart = false;
 
         sceneController = DoStatic.GetGameController().GetComponent<SceneController>();
+        varController = DoStatic.GetGameController().GetComponent<VariableController>();
+
+        // Reset values
+        varController.scoreCheck();
+        varController.ResetScore();
+        varController.ResetLife();
+        varController.ChangeBlast(0);
 
         // Identify menu parts
         foreach (Transform child in DoStatic.GetChildren(transform)) 

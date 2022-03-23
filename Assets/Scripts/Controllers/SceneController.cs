@@ -45,12 +45,12 @@ public class SceneController : MonoBehaviour
     /// Changes the scene accordingly.
     /// </summary>
     /// <param name="sceneName">The new scene to load.</param>
-    public void ChangeScene(string sceneName)
+    public void ChangeScene(string sceneName, string transitionName = "Fade")
     {
         if (!isTransitioning)
         {
             isTransitioning = true;
-            StartCoroutine(Transition("Fade", sceneName));
+            StartCoroutine(Transition(transitionName, sceneName));
         }
     }
 

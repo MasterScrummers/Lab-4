@@ -69,6 +69,11 @@ public class VariableController : MonoBehaviour
         return --lives;
     }
 
+    public void ResetLife()
+    {
+        lives = 4;
+    }
+
     /// <summary>
     /// Set the damage for regular bullet from player
     /// </summary>

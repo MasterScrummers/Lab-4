@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Transitions/Fade.unity
     guid: 9747c9c9a5c2174429708225b6388441
+  - enabled: 1
+    path: Assets/Scenes/Transitions/FadeLoss.unity
+    guid: 162ec90a294789a45b1a6fbc57932bf0
+  - enabled: 1
+    path: Assets/Scenes/Transitions/FadeWin.unity
+    guid: 226bf84be57f52e4cb0b266b5175e690
   m_configObjects: {}

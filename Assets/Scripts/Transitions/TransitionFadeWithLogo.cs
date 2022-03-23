@@ -31,7 +31,7 @@ public class TransitionFadeWithLogo : TransitionFade
         base.TransitionIn(isStartUp);
 
         if (GetType().Equals(typeof(TransitionFadeWithLogo)) && !lerp.isLerping) {
-            AssignState(WaitingIn);
+            AssignState(WaitingIn); 
         }
     }
 

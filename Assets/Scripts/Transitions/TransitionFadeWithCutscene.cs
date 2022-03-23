@@ -13,7 +13,7 @@ using UnityEngine;
 public class TransitionFadeWithCutscene : TransitionFadeWithLogo
 {
     public GameObject cutsceneShipPrefab; //The prefab of the cutscene ship
-    public GameObject cutsceneBackground; //The gameObject in the scene of the background.
+    public SpriteRenderer[] cutsceneBackground; //The gameObject in the scene of the background.
     
     public Vector3 cutsceneShipStartPos; //The ships starting position
     public Vector3 cutsceneShipEndPos; //The ships starting position
@@ -23,12 +23,17 @@ public class TransitionFadeWithCutscene : TransitionFadeWithLogo
 
     private GameObject cutsceneShip; //The reference of the spawned ship
     private SpriteRenderer shipSprite; //The sprite of the background
-    private SpriteRenderer backgroundSprite; //The sprite of the background
+    // private SpriteRenderer backgroundSprite; //The sprite of the background
 
     protected override void Start()
     {
-        backgroundSprite = cutsceneBackground.GetComponent<SpriteRenderer>();
-        backgroundSprite.color = new Color(1, 1, 1, 0);
+        // backgroundSprite = cutsceneBackground.GetComponent<SpriteRenderer>();
+        // backgroundSprite.color = new Color(1, 1, 1, 0);
+
+        foreach (SpriteRenderer sprite in cutsceneBackground)
+        {
+            sprite.color = new Color(1, 1, 1, 0);
+        }
 
         base.Start();
         InitiateTransition();
@@ -51,7 +56,13 @@ public class TransitionFadeWithCutscene : TransitionFadeWithLogo
             return;
         }
 
-        backgroundSprite.color = UpdateAlpha(backgroundSprite.color);
+        Color alpha = UpdateAlpha(cutsceneBackground[0].color);
+        // backgroundSprite.color = UpdateAlpha(backgroundSprite.color);
+
+        foreach (SpriteRenderer sprite in cutsceneBackground)
+        {
+            sprite.color = alpha;
+        }
 
         if (!lerp.isLerping)
         {
@@ -92,8 +103,15 @@ public class TransitionFadeWithCutscene : TransitionFadeWithLogo
             return;
         }
 
-        Color alpha = UpdateAlpha(backgroundSprite.color);
-        backgroundSprite.color = alpha;
+        // Color alpha = UpdateAlpha(backgroundSprite.color);
+        // backgroundSprite.color = alpha;
+
+        Color alpha = UpdateAlpha(cutsceneBackground[0].color);
+        foreach(SpriteRenderer sprite in cutsceneBackground)
+        {
+            sprite.color = alpha;
+        }
+
         shipSprite.color = alpha;
 
         if (!lerp.isLerping)
