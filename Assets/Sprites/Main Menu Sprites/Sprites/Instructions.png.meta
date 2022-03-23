@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 65a5483494590544fb7af3035b213549
+guid: c847063cd24cb0347a09d56e1bb3b492
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -44,10 +44,10 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 0
+  spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 62
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -104,7 +104,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Space_0
+      name: SpaceBar
       rect:
         serializedVersion: 2
         x: 4
@@ -118,14 +118,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5507d8ed6b2441a4a8f1ae6b5df53655
-      internalID: -82186968
+      spriteID: 064cb05a2d50c0a4aa4b8684bd712612
+      internalID: 415865979
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Keys_0
+      name: WASD
       rect:
         serializedVersion: 2
         x: 3
@@ -139,8 +139,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5188347e44b31d34e87a3a984fbfbab7
-      internalID: -846488537
+      spriteID: 3a365f9e9fa96d544817ee477fb5cd5c
+      internalID: 2036688077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpecialFiring
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 21
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e11ff1906b0b8d418024c18bd87d33a
+      internalID: -1262321955
       vertices: []
       indices: 
       edges: []
@@ -156,8 +177,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Space_0: -82186968
-      Keys_0: -846488537
+      SpaceBar: 415865979
+      SpecialFiring: -1262321955
+      WASD: 2036688077
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
