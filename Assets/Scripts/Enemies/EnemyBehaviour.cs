@@ -16,6 +16,8 @@ public class EnemyBehaviour : MonoBehaviour
     protected float lifetime; //The age of the gameobject. The older, the larger.
     protected PivotCreator pivotCreator; //Adds a pivot to the origin.
     protected Rotate rot; //The natural rotation of the enemy.
+    private Collider2D collider;
+    private SpriteRenderer sprite;
 
     protected virtual void Start()
     {
@@ -24,6 +26,8 @@ public class EnemyBehaviour : MonoBehaviour
         pivotCreator = GetComponent<PivotCreator>();
         GetRot();
         Reset();
+        collider = GetComponent<Collider2D>();
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     protected virtual void GetRot()
@@ -37,6 +41,10 @@ public class EnemyBehaviour : MonoBehaviour
         Movement(delta);
         transform.localScale = originalScale * (lifetime += delta * 0.6f);
         currentSpeed += delta;
+
+        bool hasPassed = transform.localScale.x < 2.5;
+        collider.enabled = hasPassed;
+        sprite.sortingOrder = hasPassed ? 0 : 2;
     }
 
     protected virtual void Movement(float delta)
