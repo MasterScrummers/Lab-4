@@ -11,8 +11,10 @@ GameObject:
   - component: {fileID: 1379106881297414086}
   - component: {fileID: 8873373899426167679}
   - component: {fileID: 6501537619148521507}
-  - component: {fileID: 4297165729592533862}
   - component: {fileID: 3611833225374711051}
+  - component: {fileID: 8630807577155092206}
+  - component: {fileID: 8736975784083953736}
+  - component: {fileID: 7094093796479787184}
   m_Layer: 0
   m_Name: EnemyAsteroid
   m_TagString: Enemy
@@ -99,33 +101,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7e42542c32a19d46bb1763944ae4ded, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreWorth: 100
   speed: 1
---- !u!61 &4297165729592533862
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1833847488369828065}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.78125, y: 0.75}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.78125, y: 0.75}
-  m_EdgeRadius: 0
+  rotationSpeed: 1
 --- !u!95 &3611833225374711051
 Animator:
   serializedVersion: 4
@@ -146,3 +124,47 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8630807577155092206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1833847488369828065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b397fb567546374c8fdbb8f47c20e6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: {x: 0, y: 0, z: 1}
+--- !u!114 &8736975784083953736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1833847488369828065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f70a813e8b256aa48a83bd4876bff60b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pivotName: Pivot
+  pivotPosition: {x: 0, y: 0, z: 0}
+  addRotationMovement: 0
+--- !u!58 &7094093796479787184
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1833847488369828065}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.390625

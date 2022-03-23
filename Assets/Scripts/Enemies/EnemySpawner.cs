@@ -36,11 +36,12 @@ public class EnemySpawner : MonoBehaviour
         switch (startUpRef.stage)
         {
             case 1:
-                SpawnEnemy(0);
+                SpawnEnemy(2);
                 return;
             case 2:
                 return;
             case 3:
+
                 return;
         }
     }
