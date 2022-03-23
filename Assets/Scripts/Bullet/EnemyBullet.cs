@@ -6,20 +6,25 @@ public class EnemyBullet : MonoBehaviour
 {
     public float speed = 2; //bullet speed
     private Rigidbody2D rb;
-    public float destroyTime; //Time take for the bullet to destroy itself
+    public float destroyTime; //Time takes for the bullet to destroy itself
     private VariableController vc;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         vc = DoStatic.GetGameController().GetComponent<VariableController>();
+        destroyTime = 3;
     }
 
     // Update is called once per frame
     void Update()
     {
         rb.velocity = transform.up * speed; //bullet being fired along y-axis of enemy
-        StartCoroutine(DestroySelf());
+        destroyTime -= Time.deltaTime;
+        if (destroyTime <= 0)
+        {
+            DestroySelf();
+        }
     }
 
     //Bullet Collision with the player (decrease life)
@@ -37,10 +42,9 @@ public class EnemyBullet : MonoBehaviour
         }
     }
 
-    //Bullet Destroy itself after a period of time
-    private IEnumerator DestroySelf()
+    //Bullet Destroy itsel
+    private void DestroySelf()
     {
-        yield return new WaitForSeconds(destroyTime);
         Destroy(gameObject);
     }
 }

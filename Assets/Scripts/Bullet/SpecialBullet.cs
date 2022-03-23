@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpecialBullet : MonoBehaviour
 {
     public float speed = 4; //bullet speed
-    public float destroyTime; //Time take for the bullet to destroy itself
+    public float destroyTime; //Time takes for the bullet to destroy itself
     private Rigidbody2D rb;
     private VariableController vc;
 
@@ -14,13 +14,18 @@ public class SpecialBullet : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         vc = DoStatic.GetGameController().GetComponent<VariableController>();
+        destroyTime = 4;
     }
 
     // Update is called once per frame
     void Update()
     {
         rb.velocity = transform.up * speed; //bullet being fired along y-axis of player
-        StartCoroutine(DestroySelf());
+        destroyTime -= Time.deltaTime;
+        if (destroyTime <= 0)
+        {
+            DestroySelf();
+        }
         
     }
 
@@ -34,9 +39,8 @@ public class SpecialBullet : MonoBehaviour
         }
     }
 
-    private IEnumerator DestroySelf()
+    private void DestroySelf()
     {
-        yield return new WaitForSeconds(destroyTime);
         Destroy(gameObject);
     }
 }
