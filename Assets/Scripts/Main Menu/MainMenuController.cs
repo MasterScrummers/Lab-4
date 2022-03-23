@@ -33,7 +33,7 @@ public class MainMenuController : MonoBehaviour
         varController.scoreCheck();
         varController.ResetScore();
         varController.ResetLife();
-        varController.ChangeBlast(0);
+        varController.ResetBlast();
 
         // Identify menu parts
         foreach (Transform child in DoStatic.GetChildren(transform)) 

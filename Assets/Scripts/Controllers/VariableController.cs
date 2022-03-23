@@ -52,6 +52,11 @@ public class VariableController : MonoBehaviour
         blasts += amount;
     }
 
+    public void ResetBlast()
+    {
+        blasts = 0;
+    }
+
     /// <summary>
     /// Resets the score value to 0.
     /// </summary>
