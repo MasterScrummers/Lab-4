@@ -35,7 +35,7 @@ public class SpecialBullet : MonoBehaviour
     {
         if (collision.tag == "Enemy")
         {
-           collision.GetComponent<EnemyBehaviour>().health -= vc.specialBulletDamage;
+           //collision.GetComponent<EnemyBehaviour>().health -= vc.specialBulletDamage;
         }
     }
 

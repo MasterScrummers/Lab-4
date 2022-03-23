@@ -77,7 +77,7 @@ public class EnemyBehaviour : MonoBehaviour
     /// Change the health by amount.
     /// </summary>
     /// <param name="amount">Can be positive or negative.</param>
-    private void ChangeHealth(int amount)
+    public void ChangeHealth(int amount)
     {
         currentHealth += amount;
         if (currentHealth <= 0)
