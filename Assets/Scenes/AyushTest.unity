@@ -187,9 +187,17 @@ PrefabInstance:
       value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 8058098998727355107, guid: 2be8ed88a6815ca42b07ccbe6c55bdd8, type: 3}
+      propertyPath: score
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8058098998727355107, guid: 2be8ed88a6815ca42b07ccbe6c55bdd8, type: 3}
       propertyPath: bullet
       value: 
       objectReference: {fileID: 8407121886576150092, guid: 7970fa79dc8c67c4a912457203464d86, type: 3}
+    - target: {fileID: 8058098998727355107, guid: 2be8ed88a6815ca42b07ccbe6c55bdd8, type: 3}
+      propertyPath: health
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8058098998727355107, guid: 2be8ed88a6815ca42b07ccbe6c55bdd8, type: 3}
       propertyPath: timeBTW
       value: 0.5
@@ -197,7 +205,7 @@ PrefabInstance:
     - target: {fileID: 8058098998727355107, guid: 2be8ed88a6815ca42b07ccbe6c55bdd8, type: 3}
       propertyPath: firePosition
       value: 
-      objectReference: {fileID: 9078155612031167646, guid: 2c1d620bf4cf7bc41a96b009f07a296d, type: 3}
+      objectReference: {fileID: 1550342447}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2be8ed88a6815ca42b07ccbe6c55bdd8, type: 3}
 --- !u!1 &89245134
@@ -1000,6 +1008,11 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!4 &1550342447 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2466150604860873636, guid: 2be8ed88a6815ca42b07ccbe6c55bdd8, type: 3}
+  m_PrefabInstance: {fileID: 13433712}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1619479353
 GameObject:
   m_ObjectHideFlags: 0

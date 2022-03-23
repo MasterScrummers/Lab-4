@@ -9,6 +9,10 @@ public class VariableController : MonoBehaviour
 
     private SaveController save; //A reference of the save file. Used for the high score.
 
+    public int bulletDamage { get; private set; } = 1; //The damage of regular bullet from player
+
+    public int specialBulletDamage { get; private set; } = 5; //The damage of special bullet
+
     public void Start()
     {
         save = GetComponent<SaveController>();
@@ -63,5 +67,13 @@ public class VariableController : MonoBehaviour
     public int DecrementLife()
     {
         return --lives;
+    }
+
+    /// <summary>
+    /// Set the damage for regular bullet from player
+    /// </summary>
+    public void SetBulletDamage(int damage)
+    {
+        bulletDamage = damage;
     }
 }
