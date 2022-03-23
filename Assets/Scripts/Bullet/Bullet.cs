@@ -6,11 +6,13 @@ public class Bullet : MonoBehaviour
 {
     public float speed = 2; //bullet speed
     private Rigidbody2D rb;
+    private VariableController vc;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        vc = DoStatic.GetGameController().GetComponent<VariableController>();
     }
 
     // Update is called once per frame
@@ -31,8 +33,8 @@ public class Bullet : MonoBehaviour
     {
         if (collision.tag == "Enemy")
         {
-            DoStatic.GetGameController().GetComponent<VariableController>().ChangeScore(100);
-            Destroy(collision.gameObject); //Might need to change it if we want a explode animation when enemy get destroyed.
+            collision.GetComponent<EnemyBehaviour>().health -= vc.bulletDamage;
+            Debug.Log(collision.GetComponent<EnemyBehaviour>().health);
             Destroy(gameObject);
         }
     }
